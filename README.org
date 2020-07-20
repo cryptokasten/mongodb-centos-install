@@ -1,0 +1,37 @@
+#+TITLE: MongoDB CentOS install
+#+OPTIONS: ^:nil
+#+PROPERTY: header-args:sh :session *shell mongodb-centos-install sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell mongodb-centos-install python* :results silent raw
+
+** System environment
+
+- CentOS Linux release 8.1.1911 (Core)
+
+- MongoDB 4.2.8
+
+** Configure yum
+
+=/etc/yum.repos.d/mongodb-org-4.2.repo=.
+
+#+BEGIN_SRC conf :tangle etc/yum.repos.d/mongodb-org-4.2.repo
+[mongodb-org-4.2]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc
+#+END_SRC
+
+** Install package
+
+#+BEGIN_SRC sh
+sudo yum install -y mongodb-org
+#+END_SRC
+
+** Start service
+
+#+BEGIN_SRC sh
+systemctl start mongod
+#+END_SRC
+
+** References
